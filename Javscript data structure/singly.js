@@ -34,7 +34,7 @@ class MySinglyLinkedList {
     append(value){
         const newnode = new Node(value);
         this.tail.next = newnode; // Altera tanto al tail.next como al head.next
-        this.tail = newnode;      // solo cambia el tail por el newnode
+        this.tail = newnode;      // cambia la dirección de memoria a la que esta apuntando this.tail
         this.length++;
         return this;
     }
@@ -68,6 +68,20 @@ class MySinglyLinkedList {
             counter++;
         }
         return currentNode;
+    }
+    remove(index){
+        if (index === 0){
+            this.head = this.head.next
+            this.length-- 
+            return this
+        }
+        const firstPointer = this.getTheIndex(index-1);
+        const holdingPointer = this.getTheIndex(index + 1);
+        firstPointer.next = holdingPointer;
+        this.length--;
+        return this;
+
+
     }
 }
 
